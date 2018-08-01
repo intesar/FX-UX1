@@ -1,6 +1,6 @@
 ---
 genPolicy: "Create"
-openAPISpec: "http://localhost:8080/v2/api-docs"
+openAPISpec: "open-api-spec.json"
 generators:
 - type: "anonymous_invalid"
   assertions:
@@ -33,16 +33,6 @@ generators:
   inactive: false
   autoCodeGeneratorMatches: null
 - type: "sql_injection"
-  assertions:
-  - "@StatusCode != 200"
-  - "@StatusCode != 401\n@StatusCode != 404\n@StatusCode != 500"
-  severity: "Critical"
-  database:
-    name: "MySQL"
-    version: "5.7"
-  inactive: false
-  autoCodeGeneratorMatches: null
-- type: "sql_injection_timebound"
   assertions:
   - "@ResponseTime >= 5000"
   - "@StatusCode != 401\n@StatusCode != 404\n@StatusCode != 500"
@@ -83,7 +73,7 @@ generators:
   database: null
   inactive: false
   autoCodeGeneratorMatches: null
-- type: "anonymous_invalid"
+- type: "null_value"
   assertions:
   - "@StatusCode != 200"
   - "@StatusCode != 401\n@StatusCode != 404\n@StatusCode != 500"
